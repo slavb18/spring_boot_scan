@@ -22,6 +22,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/sayHello")
 public interface HelloService {
@@ -30,5 +31,10 @@ public interface HelloService {
     @Path("/{a}")
     @Produces(MediaType.TEXT_PLAIN)
     String sayHello(@PathParam("a") String a);
+
+    @GET
+    @Path("/reason/{a}")
+    @Produces(MediaType.TEXT_PLAIN)
+    Response reason(@PathParam("a") String a);
 
 }

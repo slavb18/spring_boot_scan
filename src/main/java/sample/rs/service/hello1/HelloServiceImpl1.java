@@ -20,6 +20,8 @@ package sample.rs.service.hello1;
 import org.springframework.stereotype.Service;
 
 import io.swagger.annotations.Api;
+import javax.ws.rs.core.Response;
+import sample.rs.service.CustomResponseStatus;
 import sample.rs.service.HelloService;
 
 @Api("/sayHello")
@@ -28,6 +30,12 @@ public class HelloServiceImpl1 implements HelloService {
 
     public String sayHello(String a) {
         return "Hello " + a + ", Welcome to CXF RS Spring Boot World!!!";
+    }
+
+    @Override
+    public Response reason(String a) {
+        Response.StatusType status=new CustomResponseStatus(453,"custom reasonPhrase ");
+        return Response.status(status).entity("Hello " + a + ", Welcome to CXF RS Spring Boot World!!!").build();
     }
 
 }

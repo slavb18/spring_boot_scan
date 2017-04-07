@@ -17,11 +17,14 @@
  * under the License.
  */
 package sample.rs.service.hello2;
+
 import javax.ws.rs.Path;
 
 import org.springframework.stereotype.Service;
 
 import io.swagger.annotations.Api;
+import javax.ws.rs.core.Response;
+import sample.rs.service.CustomResponseStatus;
 import sample.rs.service.HelloService;
 
 @Path("/sayHello2")
@@ -31,6 +34,12 @@ public class HelloServiceImpl2 implements HelloService {
 
     public String sayHello(String a) {
         return "Hello2 " + a + ", Welcome to CXF RS Spring Boot World!!!";
+    }
+
+    @Override
+    public Response reason(String a) {
+        Response.StatusType status = new CustomResponseStatus(453, "custom reasonPhrase ");
+        return Response.status(status).entity("Hello " + a + ", Welcome to CXF RS Spring Boot World!!!").build();
     }
 
 }
